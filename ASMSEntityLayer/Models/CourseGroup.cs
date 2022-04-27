@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace ASMSEntityLayer.Models
 {
     [Table("CourseGroups")]
+    //[ındex (nameof(portalcode),IsUnique=True)]Seni mycontext classında yazılacak.
     public class CourseGroup : Base<int>
     {
         public int ClassId { get; set; }
