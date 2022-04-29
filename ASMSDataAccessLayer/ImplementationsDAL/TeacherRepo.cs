@@ -10,7 +10,7 @@ namespace ASMSDataAccessLayer.ImplementationsDAL
 {
     public class TeacherRepo:RepositoryBase<Teacher,string>,ITeacherRepo
     {
-        public TeacherRepo(MyContext my):base(myContext)
+        public TeacherRepo(MyContext myContext):base(myContext)
         {
 
         }
