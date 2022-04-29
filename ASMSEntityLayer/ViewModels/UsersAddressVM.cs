@@ -28,12 +28,12 @@ namespace ASMSEntityLayer.ViewModels
             public string PostCode { get; set; } // 34000
                                                  //ilişkiler 
             
-            public virtual AppUser AppUser { get; set; }
+            public  AppUser AppUser { get; set; }
 
-            public virtual Neighbourhood Neighbourhood { get; set; }
+            public  NeighbourhoodVM Neighbourhood { get; set; }
         //TODO:Aşağıdakilerle il ve ilçeye ulaşabilir miyim?
-            public City City { get; set; }
-            public  District District { get; set; }
+            public CityVM City { get; set; }
+            public  DistrictVM District { get; set; }
 
     }
 }
