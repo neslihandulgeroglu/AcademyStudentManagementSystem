@@ -27,14 +27,14 @@ namespace ASMSEntityLayer.IdentityModels
         [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
         [Required(ErrorMessage = "Cinsiyet seçimi Gereklidir!")]
-        public Genders Gender { get; set; }
-        public bool IsDeleted { get; set; } = false;
+        public Genders Gender { get; set;}
+        public bool IsDeleted { get; set;} = false;
 
         // ilişkiler
-        public virtual ICollection<UsersAddress> UsersAddresses { get; set; }
+        public virtual ICollection<UsersAddress> UsersAddresses { get; set;}
 
-        public virtual ICollection<Teacher> Teachers { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Teacher> Teachers { get; set;}
+        public virtual ICollection<Student> Students { get; set;}
 
     }
 }
