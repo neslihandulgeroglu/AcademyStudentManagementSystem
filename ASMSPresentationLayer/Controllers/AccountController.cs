@@ -200,7 +200,9 @@ namespace ASMSPresentationLayer.Controllers
                     Body=$"Merhaba {user.Name}{user.Surname},"+
                     $"<br/>Yeni parola belirlemek için"+$"<a href='{HtmlEncoder.Default.Encode(callBackUrl)}'>buraya </a> tıklayınız..."
                 };
-
+                await _emailSender.SendMessage(emailMessage);
+                ViewBag.ResetPasswordSuccessMessage = "Şifre yenileme işlemi alındı!Epostanızı kontrol ediniz!";
+                return View();
             }
             catch (Exception)
             {
@@ -210,6 +212,64 @@ namespace ASMSPresentationLayer.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> ComfirmResetPassword(string userId,string code)
+        {
+            if(string.IsNullOrEmpty(userId)||string.IsNullOrEmpty(code))
+            {
+                ViewBag.ConfirmResestPasswordFailureMessage = "Beklenmedik bir hata oluştu!";
+                return View();
+            }
+            //ViewBag.UserId = userId;
+            //ViewBag.Code = code;
+            //buraya geri döneceğiz.
+            ResetPasswordViewModel model = new ResetPasswordViewModel()
+            {
+                UserId = userId,
+                Code = code
+            };
+            return View(model);//buraya view model yapılacak.iki değişken var çünkü 
 
+        }
+        [HttpPost]
+        public async Task<IActionResult>ConfirmResetPassword
+            (ResetPasswordViewModel model)
+        {
+            try
+            {
+                if(!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                var user = await _userManager.FindByIdAsync(model.UserId);
+                if(user==null)
+                {
+                    ModelState.AddModelError("", "Kullanıcı Bulunamadı!");//bunu yazmazsak altta ki kodlar uygulanacaktır.
+                    //log mesajı yerleştir.
+                    //throw new Exception();
+                }
+                var tokenDecoded = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
+                var result = await _userManager.ResetPasswordAsync(user, tokenDecoded, model.NewPassword);
+                if(result.Succeeded)
+                {
+                    TempData["ComfirmResetPasswordSuccess"] = "Şifreniz başarıyla güncellenmiştir";
+                    return RedirectToAction("Login", "Account", new { email = user.Email });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Şifrenizin değiştirilme işleminde beklenemedik bir hata oluştu!Tekrar deneyiniz");
+                    return View(model);
+
+                }
+
+            }
+            catch (Exception)
+            {
+                //ex loglanacak
+                ModelState.AddModelError("", "Beklenemdik bir hata oluştur!Tekrar deneyiniz!");
+
+                throw;
+            }
+        }
     }
 }
