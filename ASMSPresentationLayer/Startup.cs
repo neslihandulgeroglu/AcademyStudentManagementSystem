@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ASMSEntityLayer.Mappings;
 using ASMSBusinessLayer.EmailService;
+using ASMSBusinessLayer.ImplementationsBLL;
+using ASMSBusinessLayer.ContractsBLL;
 
 namespace ASMSPresentationLayer
 {
@@ -32,7 +34,7 @@ namespace ASMSPresentationLayer
             //ASPnet Core'un ConnectionString baðlantýsý yapabilmesi iiçin
             //yapýladýrma servislerine dbcontext nesnesini eklenmesi gerekir.
             services.AddDbContext<MyContext>(options => options.UseSqlServer
-            (Configuration.GetConnectionString("SqlConnection")));
+            (Configuration.GetConnectionString("SqlConnection")),ServiceLifetime.Scoped);
             services.AddControllersWithViews();
             services.AddControllersWithViews();
             services.AddRazorPages();//Razor sayfalarý için
@@ -52,12 +54,15 @@ namespace ASMSPresentationLayer
 
             //mapleme eklendi
             services.AddAutoMapper(typeof(Maps));
-            services.AddScoped<IEmailSender,EmailSender>();
+            services.AddSingleton<IEmailSender,EmailSender>();
+            services.AddScoped<IStudentBusinessEngine, StudentBusinessEngine>();
+            services.AddScoped<ASMSDataAccessLayer.ContractsDAL.IUnitOfWork, ASMSDataAccessLayer.ImplementationsDAL.UnitOfWork>();
+
             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,RoleManager<AppRole>roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -74,6 +79,8 @@ namespace ASMSPresentationLayer
             app.UseSession();//Oturum mekanýzmasýnýn kulllanýlmasý için 
             app.UseAuthorization();//[Authorize ]attribute için (yetki)
             app.UseAuthentication();//Login Logout Ýþlemlerinin gerektirdiði oturum iþleyiþlerini kullanabilmek için.
+            //rolleri oluþturacak ststic metot çaðýrýldý.
+            CreateDefaultData.CreateData.Create(roleManager);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
