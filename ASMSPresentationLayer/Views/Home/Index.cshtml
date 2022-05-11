@@ -3,6 +3,69 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutASMS.cshtml";
 }
+@if (TempData["RegisterSuccessMessage"] != null)
+{
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Kayıt Ol Mesaj</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-success" style="font-weight:bold">
+                        @TempData["RegisterSuccessMessage"]
+                    </p>
+                </div>
+                <div class="modal-footer">
 
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>BİLGİ!</strong> @TempData["RegisterSuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+
+}
+@if (TempData["RegisterFailedMessage"] != null)
+{
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Kayıt Ol Mesaj</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger" style="font-weight:bold">
+                        @TempData["RegisterFailedMessage"]
+                    </p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Dikkat!</strong>@TempData["RegisterFailedMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+<h1>Buraya aktif eğitimler gelecektir...</h1>
 <h1>Index</h1>
 

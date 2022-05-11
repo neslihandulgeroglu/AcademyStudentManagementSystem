@@ -17,12 +17,16 @@ namespace ASMSEntityLayer.Mappings
         {
 
             //UserAddress'ı UserAddressesVM 'ye dönüştür.
-           // CreateMap<UsersAddress, UsersAddressVM>();//DAL--->BLL
+            // CreateMap<UsersAddress, UsersAddressVM>();//DAL--->BLL
             //Yukarıdakinin aynısını tek seferde yapmak mumkun.
-           // CreateMap<UsersAddressVM, UsersAddress>();//PlatformID-->BLL--->DAL
+            // CreateMap<UsersAddressVM, UsersAddress>();//PlatformID-->BLL--->DAL
             //UserAddress ve VM 'yi birbirine dönüştür.
             CreateMap<UsersAddress, UsersAddressVM>().ReverseMap();
-        }
+            CreateMap<Student, StudentVM>().ReverseMap();
+            CreateMap<City, CityVM>().ReverseMap();
+            CreateMap<District, DistrictVM>().ReverseMap();
+            CreateMap<Neighbourhood, NeighbourhoodVM>().ReverseMap();
 
+        }
     }
 }

@@ -23,12 +23,12 @@ namespace ASMSPresentationLayer.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly RoleManager<AppUser> _roleManager;
+        private readonly RoleManager<AppRole> _roleManager;
         private readonly IEmailSender _emailSender;
         private readonly IStudentBusinessEngine _studentBusinessEngine;
 
         public AccountController(UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager, RoleManager<AppUser> roleManager, 
+            SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager, 
             IEmailSender emailSender, IStudentBusinessEngine studentBusinessEngine)
         {
             this._userManager = userManager;
@@ -37,11 +37,11 @@ namespace ASMSPresentationLayer.Controllers
             this._emailSender = emailSender;
             this._studentBusinessEngine = studentBusinessEngine;
         }
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult Register()
+        //{
+        //    return View();
+        //}
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel  model)
         {
@@ -50,16 +50,25 @@ namespace ASMSPresentationLayer.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(model);
+
+                    //return View(model);
+                    TempData["RegisterSuccessMessage"] = "Veri girişlerini istenildiği gibi yapmadınız." +
+                        " Tekrar deneyiniz!";
+                    return RedirectToAction("Index", "Home");
                 }
                 var checkUserForEmail = await _userManager.FindByEmailAsync(model.Email);
                 if (checkUserForEmail !=null)
                 {
-                    ModelState.AddModelError("", "Bu email ile zaten sisteme kayıt yapılmıştır.");
-                    return View(model);
+                    //ModelState.AddModelError("", "Bu email ile zaten sisteme kayıt yapılmıştır.");
+                    //return View(model);
+                    TempData["RegisterSuccessMessage"] = "Beklenemedik bir sorun oldu." +
+                        "Üye kaydı başarıszı tekrar deneyiniz!";
+                    return RedirectToAction("Index", "Home");
                 }
+
                 AppUser newUser = new AppUser()
                 {
+                    TCNumber=model.TCNumber,
                     Email = model.Email,
                     Name = model.Name,
                     Surname = model.Surname,
@@ -95,15 +104,20 @@ namespace ASMSPresentationLayer.Controllers
                         Body="Merhaba,Sisteme kaydınız gerçekleşmiştir...",
                         Contacts=new string[] {model.Email}
                     };
-                    return RedirectToAction("Login", "Account", new { email = model.Email });
+                    await _emailSender.SendMessage(emailToStudent);
+                    TempData["RegisterSuccessMessage"] = "Sisteme kaydınız başarıyla gerçekleşti!";
+                    return RedirectToAction("Index", "Home", new { email = model.Email });
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Beklenmedik bir sorun oldu.Üye kaydı başarısız tekrar deneyiniz!");
-                    return View(model);
+                    TempData["RegisterSuccessMessage"] = "Beklenemedik bir sorun oldu." +
+                        "Üye kaydı başarıszı tekrar deneyiniz!";
+                    return RedirectToAction("Index", "Home");
+                    //ModelState.AddModelError("", "Beklenmedik bir sorun oldu.Üye kaydı başarısız tekrar deneyiniz!");
+                    //return View(model);
                 }
             }
-            catch (Exception) 
+            catch (Exception ex) 
             {
                 //loglanacak
                 return RedirectToAction("Error","Home");

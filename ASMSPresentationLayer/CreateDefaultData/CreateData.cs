@@ -29,7 +29,7 @@ namespace ASMSPresentationLayer.CreateDefaultData
                         CreatedDate = DateTime.Now,
                         Description = $"Sistem tarafınfan {item} rolü eklendi"
                     };
-                    roleManager.CreateAsync(role);
+                  var result=roleManager.CreateAsync(role).Result;
                 }
             }
 

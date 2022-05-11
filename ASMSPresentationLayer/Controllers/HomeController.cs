@@ -18,8 +18,9 @@ namespace ASMSPresentationLayer.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string email)
         {
+            ViewBag.Email = email;
             return View();
         }
 
