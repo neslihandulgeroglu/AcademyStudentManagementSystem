@@ -16,6 +16,7 @@ using ASMSBusinessLayer.ViewModels;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASMSPresentationLayer.Controllers
 {
@@ -284,6 +285,15 @@ namespace ASMSPresentationLayer.Controllers
 
                 throw;
             }
+
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult>Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+
         }
     }
 }

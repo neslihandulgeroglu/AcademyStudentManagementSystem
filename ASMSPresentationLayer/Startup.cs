@@ -77,9 +77,9 @@ namespace ASMSPresentationLayer
 
             app.UseRouting();//Controller/Action
             app.UseSession();//Oturum mekanýzmasýnýn kulllanýlmasý için 
-            app.UseAuthorization();//[Authorize ]attribute için (yetki)
             app.UseAuthentication();//Login Logout Ýþlemlerinin gerektirdiði oturum iþleyiþlerini kullanabilmek için.
-            //rolleri oluþturacak ststic metot çaðýrýldý.
+            app.UseAuthorization();//[Authorize ]attribute için (yetki)
+             //rolleri oluþturacak ststic metot çaðýrýldý.
             CreateDefaultData.CreateData.Create(roleManager);
             app.UseEndpoints(endpoints =>
             {
