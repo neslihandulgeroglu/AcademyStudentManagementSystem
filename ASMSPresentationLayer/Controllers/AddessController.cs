@@ -15,6 +15,7 @@ namespace ASMSPresentationLayer.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmailSender emailSender;
         private readonly IUsersAddressBusinessEngine _userAddress;
+        private readonly ICityBusinessEngine _cityEngine;
 
         public AddessController(UserManager<AppUser> userManager, IEmailSender emailSender, IUsersAddressBusinessEngine userAddress)
         {
@@ -30,6 +31,8 @@ namespace ASMSPresentationLayer.Controllers
         [HttpGet]
         public IActionResult AddAddress()
         {
+            ViewBag.Cities = _cityEngine.GetAll().Data;
+
             return View();
         }
 

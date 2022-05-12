@@ -271,6 +271,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //js -->
 
     <script src="~/asmsTheme/js/bootstrap.js"></script>
+    @RenderSection("Scripts",required:false)
+    @*Asenkron hali de vardır*@
+    @*@await RenderSectionAsync("Scripts",required:false)*@
 
 </body>
 

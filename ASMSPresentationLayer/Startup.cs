@@ -35,8 +35,8 @@ namespace ASMSPresentationLayer
             //yapýladýrma servislerine dbcontext nesnesini eklenmesi gerekir.
             services.AddDbContext<MyContext>(options => options.UseSqlServer
             (Configuration.GetConnectionString("SqlConnection")));
-            services.AddControllersWithViews();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();//pROJE ÇALIÞIRKEN RAZOR SAYFALARINI
+            //YAPILAN DEÐÝÞÝKLÝKLERÝ anasayfaya yansýmasý için.
             services.AddRazorPages();//Razor sayfalarý için
             services.AddMvc();
             services.AddSession(options =>
@@ -57,6 +57,8 @@ namespace ASMSPresentationLayer
             services.AddSingleton<IEmailSender,EmailSender>();
             services.AddScoped<IStudentBusinessEngine, StudentBusinessEngine>();
             services.AddScoped<IUsersAddressBusinessEngine, UsersAddressBusinessEngine>();
+            services.AddScoped<ICityBusinessEngine, CityBusinessEngine>();
+
             services.AddScoped<ASMSDataAccessLayer.ContractsDAL.IUnitOfWork, ASMSDataAccessLayer.ImplementationsDAL.UnitOfWork>();
 
             
