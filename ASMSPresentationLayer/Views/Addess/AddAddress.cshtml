@@ -1,0 +1,61 @@
+﻿@using ASMSEntityLayer.ViewModels
+@model UsersAddressVM
+@{
+    ViewData["Title"] = "AddAddress";
+    Layout = "~/Views/Shared/_LayoutASMSPage.cshtml";
+}
+
+<br />
+<br />
+<h3>Yeni Adres Ekleyebilirsiniz...</h3>
+
+<br />
+<div class="row" style="background-color:whitesmoke; border-radius:4px;padding:10px;">
+    <div class="col-md-12">
+        <form asp-controller="Address" asp-action="AddAddress" method="post">
+            <div class="form-group">
+                <span class=" text-danger" style=" font-weight:bold;margin-right:3px">Zorunlu Alan</span>
+                <label asp-for="AddressTitle"></label>
+                <input asp-for="AddressTitle" class="form-control" required />
+            </div>
+
+
+            <div class="form-group">
+                <span class="text-danger" style="font-weight:bold; margin-right:3px;">Zorunlu Alan</span>
+                <label for="City" style="font-weight:bold">İl</label>
+                <select id="CitySelect" name="City" class="form-control" required>
+                    <option value="0" selected>***İl Seçiniz***</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <span class="text-danger" style="font-weight:bold; margin-right:3px;">Zorunlu Alan</span>
+                <label for="District" style="font-weight:bold">İlçe</label>
+                <select id="DistrictSelect" name="District" class="form-control"required>
+                    <option value="0" selected>***İlçe Seçiniz***</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <span class="text-danger" style="font-weight:bold; margin-right:3px;">Zorunlu Alan</span>
+                <label for="Neighbourhood" style="font-weight:bold">Mahalle</label>
+                <select id="NeighbourhoodSelect" name="Neighbourhood" class="form-control" required>
+                    <option value="0" selected>***Mahalle Seçiniz***</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <span class=" text-danger" style=" font-weight:bold;margin-right:3px">Zorunlu Alan</span>
+                <label asp-for="AddressDetails"></label>
+                <input asp-for="AddressDetails" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class=" text-danger" style=" font-weight:bold;margin-right:3px">Zorunlu Alan</span>
+                <label asp-for="PostCode"></label>
+                <input asp-for="PostCode" class="form-control" />
+            </div>
+
+        </form>
+    </div>
+
+</div>

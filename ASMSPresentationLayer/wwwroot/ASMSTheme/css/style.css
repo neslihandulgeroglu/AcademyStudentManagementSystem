@@ -272,6 +272,17 @@ div#word-mark h1 a {
     position: relative;
     z-index: 0;
 }
+.banner_section pages{
+    background: url(/asmstheme/images/serve.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    height: 10vw;
+    position: relative;
+    z-index: 0;
+}
 
 .banner-info {
     position: absolute;

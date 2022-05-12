@@ -41,44 +41,30 @@
             </li>
             @if (signManager.IsSignedIn(Context.User))
             {
-                <li>
-                    <div claas="dropdown">
-                        <a class="nav-link btn btn-default dropsown-toggle"
-                            id="dropdownMenuLink"
-                            data-bs-toggle="dropdown"aria-expanded="false"
-                            style="marGin-right:10px;background-color:white;color;black;">
-                            @signManager.UserManager.FindByNameAsync(Context.User.Identity.Name).Result.Name
-                            @signManager.UserManager.FindByNameAsync(Context.User.Identity.Name).Result.Surname
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                            style="background-color:darkblue;color:red;">
-                            <li>
-                                <a class="dropdown-item"
-                                   style="color:white"
-                                   href="#">
-                                    Hesap bilgilerim
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item"
-                                   style="color:white"
-                                   href="#">
-                                    Eğitim bilgilerim
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item"
-                                   style="color:white"
-                                   asp-controller="Account"
-                                   asp-action="Logout"
-                                   href="#">
-                                    Çıkış Yap
-                                </a>
-                            </li>
+              <li>
+                <div class="dropdown show">
+                   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: white; color: black;">
+                    @signManager.UserManager.FindByNameAsync(Context.User.Identity.Name).Result.Name
+                    @signManager.UserManager.FindByNameAsync(Context.User.Identity.Name).Result.Surname
+                </a>
 
-                        </ul>
-                    </div>
-                </li>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" style="color:black" href="/Home/Index">
+                        Hesap Bilgilerim
+                    </a>
+                    <a class="dropdown-item" style="color: black" href="/Address/Index">
+                        Adres Bilgilerim
+                    </a>
+                    <a class="dropdown-item" style="color: black" href="/Home/Index">
+                        Eğitim Bilgilerim
+                    </a>
+                    <a class="dropdown-item" style="color: black" asp-controller="Account" asp-action="Logout">
+                        Çıkış Yap
+                      </a>
+                  </div>
+               </div>
+
+        </li>
             }
             else
             {
