@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ASMSPresentationLayer.CreateDefaultData
 {
-    public class CreateData
+    public static class CreateData
     {
-        public static void Create(RoleManager<AppRole>roleManager)
+        public static void Create(RoleManager<AppRole> roleManager)
         {
             CheckAndCreateRoles(roleManager);
         }
@@ -27,12 +27,11 @@ namespace ASMSPresentationLayer.CreateDefaultData
                         Name = item,
                         IsDeleted = false,
                         CreatedDate = DateTime.Now,
-                        Description = $"Sistem tarafınfan {item} rolü eklendi"
+                        Description = $"Sistem tarafından {item} rolü eklendi."
                     };
-                  var result=roleManager.CreateAsync(role).Result;
+                    roleManager.CreateAsync(role);
                 }
             }
-
         }
     }
 }

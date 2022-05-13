@@ -22,7 +22,7 @@ namespace ASMSBusinessLayer.ImplementationsBLL
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public IDataResult<ICollection<NeighbourhoodVM>> GetNeighbourhoodsOfDistrict(byte districtId)
+        public IDataResult<ICollection<NeighbourhoodVM>> GetNeighbourhoodsOfDistrict(int  districtId)
         {
             try
             {

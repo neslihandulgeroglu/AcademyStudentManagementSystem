@@ -1,7 +1,4 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@{ Layout = null; }
 
 
 <!--
@@ -21,15 +18,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta charset="UTF-8" />
     <meta name="keywords" content="ASMS 303" />
     <script>
-        addEventListener("load", function () {
+    addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
-
         function hideURLbar() {
             window.scrollTo(0, 1);
-        }
-
-    </script>
+        }</script>
 
     <!-- //Meta tag Keywords -->
     <!-- Custom-Files -->
@@ -52,34 +46,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
     <!-- mian-content -->
     <header class="index-banner" id="home">
-        <!-- nav -->
-        <partial name="Partials/_HeaderPartial" />
-        <!-- //nav -->
-        <!-- banner -->
-        <div class="banner_section">
-            <div class="snow-container">
-                <div class="snow foreground"></div>
-                <div class="snow foreground layered"></div>
-                <div class="snow middleground"></div>
-                <div class="snow middleground layered"></div>
-                <div class="snow background"></div>
-                <div class="snow background layered"></div>
-            </div>
-            <div class="banner-info text-uppercase">
-                <h3 data-text="Zirve için ilk adım">Zirve için ilk adım</h3>
-                <div class="ban-buttons mt-3" data-aos="fade-right">
-                    <a class="btn work scroll" href="#projects">My Work</a>
-                    <a class="btn work scroll active" href="#contact">Here me</a>
-                </div>
 
-            </div>
+        <partial name="Partials/_HeaderPartial" />
+        <div class="banner_section_pages">
+
         </div>
-        <!-- //banner -->
     </header>
     <!-- //header -->
     <!--// banner-slider -->
@@ -87,7 +64,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <section class="banner-bottom-wthree py-lg-5 py-md-5 py-4" id="about">
         <div class="container">
             @RenderBody()
-
         </div>
     </section>
     <!--// ab -->
@@ -99,7 +75,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     @await Component.InvokeAsync("Login")
     <!--//Login-->
     <!--/Register-->
+    <!-- Burada ViewComponent yaptık  -->
+
     @await Component.InvokeAsync("Register")
+
     <!--//Register-->
 
     <script src="~/asmsTheme/js/jquery-2.2.3.min.js"></script>
@@ -109,27 +88,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         AOS.init({
             easing: 'ease-out-back',
             duration: 1000
-        });
-
-    </script>
+        });</script>
     <!-- sticky nav bar-->
     <script>
         $(() => {
-
             //On Scroll Functionality
             $(window).scroll(() => {
                 var windowTop = $(window).scrollTop();
                 windowTop > 100 ? $('nav').addClass('navShadow') : $('nav').removeClass('navShadow');
                 windowTop > 100 ? $('ul.nav-honey').css('top', '50px') : $('ul.nav-honey').css('top', '160px');
             });
-
             //Click Logo To Scroll To Top
             $('#logo').on('click', () => {
                 $('html,body').animate({
                     scrollTop: 0
                 }, 500);
             });
-
             //            //Smooth Scrolling Using Navigation Menu
             //            $('a[href*="#"]').on('click', function(e) {
             //                $('html,body').animate({
@@ -137,28 +111,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             //                }, 500);
             //                e.preventDefault();
             //            });
-
             //Toggle Menu
             $('#menu-toggle').on('click', () => {
                 $('#menu-toggle').toggleClass('closeMenu');
                 $('ul').toggleClass('showMenu');
-
                 $('li').on('click', () => {
                     $('ul').removeClass('showMenu');
                     $('#menu-toggle').removeClass('closeMenu');
                 });
             });
-
-        });
-
-    </script>
+        });</script>
     <!-- //sticky nav bar -->
     <!-- Include jQuery Timeline Plugin -->
     <script src="~/asmsTheme/js/jquery.roadmap.js"></script>
 
     <script>
         $(document).ready(function () {
-
             var events = [{
                 date: 'Oct 2018 - Present',
                 content: 'Company Name <small>Co-founder, Front-end Designer</small>'
@@ -187,12 +155,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 date: '2010 - 2011',
                 content: 'New York university  <small>For Graphic Design</small>'
             },
-
             {
                 date: '2009 - 2010',
                 content: 'New York university  <small>For Graphic Design</small>'
             },
-
             {
                 date: '2008 - 2009',
                 content: 'New York university  <small>For Graphic Design</small>'
@@ -210,30 +176,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 content: 'Lorem IPsum  <small>Add Description</small>'
             }
             ];
-
             $('#my-timeline').roadmap(events, {
                 eventsPerSlide: 6,
                 slide: 1,
                 prevArrow: '<i class="fas fa-chevron-left"></i>',
                 nextArrow: '<i class="fas fa-chevron-right"></i>'
             });
-        });
-
-    </script>
+        });</script>
     <!-- simpleLightbox -->
     <script src="~/asmsTheme/js/simpleLightbox.js"></script>
-    <script>
-        $('.proj_gallery_grid a').simpleLightbox();
-
-    </script>
+    <script>$('.proj_gallery_grid a').simpleLightbox();</script>
     <!-- //simpleLightbox -->
     <!-- stats -->
     <script src="~/asmsTheme/js/jquery.waypoints.min.js"></script>
     <script src="~/asmsTheme/js/jquery.countup.js"></script>
-    <script>
-        $('.counter').countUp();
-
-    </script>
+    <script>$('.counter').countUp();</script>
     <!-- //stats -->
     <!--/ start-smoth-scrolling -->
     <script src="~/asmsTheme/js/move-top.js"></script>
@@ -246,9 +203,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     scrollTop: $(this.hash).offset().top
                 }, 900);
             });
-        });
-
-    </script>
+        });</script>
     <script>
         $(document).ready(function () {
             /*
@@ -259,19 +214,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         easingType: 'linear'
                                      };
                                     */
-
             $().UItoTop({
                 easingType: 'easeOutQuart'
             });
-
-        });
-
-    </script>
+        });</script>
     <!--// end-smoth-scrolling -->
     <!-- //js -->
 
     <script src="~/asmsTheme/js/bootstrap.js"></script>
-    @RenderSection("Scripts",required:false)
+    @RenderSection("Scripts", required: false)
     @*Asenkron hali de vardır*@
     @*@await RenderSectionAsync("Scripts",required:false)*@
 

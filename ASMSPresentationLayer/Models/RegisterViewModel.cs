@@ -27,24 +27,25 @@ namespace ASMSPresentationLayer.Models
         public string Surname { get; set; }
 
 
-        [Display(Name = "Doğum Tarihi")]
-        [DataType(DataType.Date)]
-        public DateTime? BirthDate { get; set; }
+        [Required(ErrorMessage = "Email Zorunludur!")]
+        [EmailAddress]
+        [Display(Name = "Email adresi")]
+        public string Email { get; set; }
 
+        
+        [Required(ErrorMessage = "Şifre alanı zorunludur !")]
+        [StringLength(20, MinimumLength = 8, ErrorMessage = "Şifreniz minimum 8 maximum 20 haneli olmalıdır!")]
+        [Display(Name = "Şifre")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Doğum Tarihi")]
+        public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Cinsiyet")]
         [Required(ErrorMessage = "Cinsiyet Seçimi Gereklidir!")]
         public Genders Gender { get; set; }
 
-
-        [Display(Name = "Email adresi")]
-        public string Email { get; set; }
-
-
-        [Display(Name = "Şifre")]
-        [Required(ErrorMessage = "Şifre alanı zorunludur !")]
-        [StringLength(20, MinimumLength = 8, ErrorMessage = "Şifreniz minimum 8 maximum 20 haneli olmalıdır!")]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
     }
 }

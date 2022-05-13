@@ -15,9 +15,10 @@ namespace ASMSEntityLayer.ViewModels
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool IsDeleted { get; set; }
+        [Required(ErrorMessage ="User Bilgisi Gereklidir!")]
         public int UserId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Adres başlığı  Gereklidir!")]
         [Display(Name = "Adres Başlığı")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Adres başlığı en az 2 en fazla 50 karakter aralığında olmalıdır!")]
         public string AddressTitle { get; set; }
@@ -30,7 +31,7 @@ namespace ASMSEntityLayer.ViewModels
         public string AddressDetails { get; set; } 
 
         [StringLength(5, MinimumLength = 5, ErrorMessage = "Posta Kodu 5 karakter olmalıdır!")]
-        [Display(Name = "Post Kodu")]
+        [Display(Name = "Posta kodu")]
         public string PostCode { get; set; }  //34000
         public AppUser AppUser { get; set; }
         public Neighbourhood Neighbourhood { get; set; }

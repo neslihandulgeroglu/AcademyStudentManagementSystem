@@ -14,7 +14,7 @@ namespace ASMSBusinessLayer.ContractsBLL
         //Biz şuadna zamanımız kısıtlı olduğu için sadece 
         //işimizin olduğu en krirtik olan metodu yazalım.
 
-        IDataResult<ICollection<NeighbourhoodVM>> GetNeighbourhoodsOfDistrict(byte DistrictId);//bu metot ıd verilen şehirin ilçelerini verir.
+        IDataResult<ICollection<NeighbourhoodVM>> GetNeighbourhoodsOfDistrict(int DistrictId);//bu metot ıd verilen şehirin ilçelerini verir.
 
     }
 }
