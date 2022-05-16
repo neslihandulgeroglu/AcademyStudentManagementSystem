@@ -28,4 +28,14 @@
     <ProjectReference Include="..\ASMSEntityLayer\ASMSEntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Management\Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\AdminLTE\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
+    <None Include="wwwroot\lib\AdminLTE\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
+    <None Include="wwwroot\lib\AdminLTE\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />
+  </ItemGroup>
+
 </Project>

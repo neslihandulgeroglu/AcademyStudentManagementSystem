@@ -1,0 +1,53 @@
+﻿@model List<UsersAddressVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutASMSPage.cshtml";
+}
+
+<br />
+<br />
+<h4>Adres Bilgileriniz</h4>
+
+@if (TempData["AddAddressSuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> BİLGİ!</strong> @TempData["AddAddressSuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+}
+<div>
+    <a class="btn work" href="/Address/AddAddress">Yeni Adres Ekle</a>
+
+    <a class="btn work" asp-controller="Address" asp-action="AddAddress">Yeni Adres Ekle</a>
+
+</div>
+<br />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 38rem;margin-right:20px; background-color:powderblue; color:darkblue;">
+            <div class="card-body">
+                <h4 class="card-title">@item.AddressTitle</h4>
+                <h6 class="card-subtitle mb-2 text-muted">@item.Neighbourhood.NeighbourhoodName</h6>
+                @if (!string.IsNullOrEmpty(item.AddressDetails))
+                {
+                    <p class="card-text">@item.AddressDetails</p>
+
+                }
+                else
+                {
+                    <p class="card-text">DETAY YOK</p>
+
+                }
+
+                <a href="#" class="btn btn-block btn-default">Sil</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+

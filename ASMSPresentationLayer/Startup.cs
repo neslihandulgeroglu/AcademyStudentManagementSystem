@@ -92,7 +92,18 @@ namespace ASMSPresentationLayer
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    "management",
+                    "management",
+                    "management/{controller=Admin}/{action=Register}/{id?}"
+                    );
+                //endpoints.MapAreaControllerRoute(
+                //    name: "management",
+                //    areaName: "management",
+                //    pattern: "{area:management},{controller=Admin}/{action=Login}/{id?}");
+
             });
+           
         }
     }
 }

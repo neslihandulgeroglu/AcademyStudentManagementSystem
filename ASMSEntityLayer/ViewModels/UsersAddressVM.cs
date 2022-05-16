@@ -15,8 +15,8 @@ namespace ASMSEntityLayer.ViewModels
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool IsDeleted { get; set; }
-        [Required(ErrorMessage ="User Bilgisi Gereklidir!")]
-        public int UserId { get; set; }
+      
+        public string UserId { get; set; }
 
         [Required(ErrorMessage = "Adres başlığı  Gereklidir!")]
         [Display(Name = "Adres Başlığı")]
